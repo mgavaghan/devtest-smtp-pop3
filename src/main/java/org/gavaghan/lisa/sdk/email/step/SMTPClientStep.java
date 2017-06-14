@@ -79,6 +79,20 @@ public class SMTPClientStep extends MailClientStep
 	}
 
 	/**
+	 * Get the command string.
+	 * 
+	 * @param testExec
+	 * @return
+	 * @throws TestRunException
+	 */
+	protected String getCommand(TestExec testExec) throws TestRunException
+	{
+		String command = testExec.parseInState(getCommand()).trim();
+		if (command.length() < 4) throw new TestRunException("command is too short: " + command, null);
+		return command;
+	}
+
+	/**
 	 * Send command and get response.
 	 */
 	@Override
@@ -92,8 +106,7 @@ public class SMTPClientStep extends MailClientStep
 
 		// expand the command
 		LOG.debug("About to execute SMTP command.");
-		String command = testExec.parseInState(getCommand()).trim();
-		if (command.length() < 4) throw new TestRunException("command is too short: " + command, null);
+		String command = getCommand(testExec);
 
 		// send the command
 		if (LOG.isDebugEnabled()) LOG.debug("Sending: " + command);
