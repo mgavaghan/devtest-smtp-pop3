@@ -9,8 +9,7 @@ org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
 POP3=org.gavaghan.lisa.sdk.email.step.POP3ClientStep,\
 org.gavaghan.lisa.sdk.email.step.POP3ConnectStep,\
 org.gavaghan.lisa.sdk.email.step.POP3ListenStep,\
-org.gavaghan.lisa.sdk.email.step.POP3RespondStep,\
-org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
+org.gavaghan.lisa.sdk.email.step.POP3RespondStep
 
 ###############################################################################
 # Assertions
