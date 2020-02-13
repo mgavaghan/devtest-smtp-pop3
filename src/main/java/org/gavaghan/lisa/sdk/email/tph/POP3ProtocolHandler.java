@@ -2,8 +2,8 @@ package org.gavaghan.lisa.sdk.email.tph;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.gavaghan.lisa.sdk.email.step.POP3ListenStep;
-import org.gavaghan.lisa.sdk.email.step.POP3RespondStep;
+import org.gavaghan.lisa.sdk.email.step.pop3.POP3ListenStep;
+import org.gavaghan.lisa.sdk.email.step.pop3.POP3RespondStep;
 
 import com.itko.lisa.gui.WizardStep;
 import com.itko.lisa.test.TestCase;

@@ -1,5 +1,6 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
+import org.gavaghan.lisa.sdk.email.step.MailListenEditor;
 
 /**
  * Editor for SMTPListenStep.

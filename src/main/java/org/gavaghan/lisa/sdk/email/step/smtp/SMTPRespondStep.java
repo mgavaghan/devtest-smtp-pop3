@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gavaghan.lisa.sdk.email.step.MailListenStep;
+import org.gavaghan.lisa.sdk.email.step.MailRespondStep;
 import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
 import org.gavaghan.lisa.sdk.email.tph.SMTPProtocolHandler;
 
@@ -69,7 +71,8 @@ public class SMTPRespondStep extends MailRespondStep
 		// get reader and writer
 		try
 		{
-			Writer writer = getWriter(testExec);
+			@SuppressWarnings("resource")
+         Writer writer = getWriter(testExec);
 			StringReader sr = new StringReader(responseBody);
 			BufferedReader br = new BufferedReader(sr);
 			String pending = br.readLine();

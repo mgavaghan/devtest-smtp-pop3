@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

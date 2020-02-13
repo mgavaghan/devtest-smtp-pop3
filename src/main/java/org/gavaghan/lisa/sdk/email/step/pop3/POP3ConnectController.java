@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.PrintWriter;
 

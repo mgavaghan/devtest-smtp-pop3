@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gavaghan.lisa.sdk.email.step.MailClientStep;
 import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
 
 import com.itko.lisa.test.TestExec;

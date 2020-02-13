@@ -2,8 +2,8 @@ package org.gavaghan.lisa.sdk.email.tph;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.gavaghan.lisa.sdk.email.step.SMTPListenStep;
-import org.gavaghan.lisa.sdk.email.step.SMTPRespondStep;
+import org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenStep;
+import org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondStep;
 
 import com.itko.lisa.gui.WizardStep;
 import com.itko.lisa.test.TestCase;

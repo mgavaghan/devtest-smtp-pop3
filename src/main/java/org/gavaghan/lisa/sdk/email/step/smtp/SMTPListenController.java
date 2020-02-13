@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
 import java.io.PrintWriter;
 
@@ -11,9 +11,9 @@ import com.itko.lisa.editor.TestNodeInfo;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class POP3ListenController extends TestNodeInfo
+public class SMTPListenController extends TestNodeInfo
 {
-	public static final String STEP_INSTANCE_KEY = POP3ListenStep.class.getName() + ".key";
+	public static final String STEP_INSTANCE_KEY = SMTPListenStep.class.getName() + ".key";
 
 	@Override
 	public Icon getSmallIcon()
@@ -30,13 +30,13 @@ public class POP3ListenController extends TestNodeInfo
 	@Override
 	public String getEditorName()
 	{
-		return "POP3 Listen Editor";
+		return "SMTP Listen Editor";
 	}
 
 	@Override
 	public String getHelpString()
 	{
-		return "POP3 Listener";
+		return "SMTP Listener";
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class POP3ListenController extends TestNodeInfo
 	{
 		if (getAttribute(STEP_INSTANCE_KEY) == null)
 		{
-			POP3ListenStep step = new POP3ListenStep();
+			SMTPListenStep step = new SMTPListenStep();
 
 			setThinkTime(0, 0);
 			setNextNode(this);
@@ -66,7 +66,7 @@ public class POP3ListenController extends TestNodeInfo
 	@Override
 	public void migrate(Object object)
 	{
-		POP3ListenStep step = (POP3ListenStep) object;
+		SMTPListenStep step = (SMTPListenStep) object;
 
 		putAttribute(STEP_INSTANCE_KEY, step);
 	}
@@ -80,6 +80,6 @@ public class POP3ListenController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter out)
 	{
-		((POP3ListenStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
+		((SMTPListenStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
 	}
 }

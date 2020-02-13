@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.smtp;
 
 import java.io.PrintWriter;
 
@@ -8,17 +8,18 @@ import com.itko.lisa.core.ModuleLegacy;
 import com.itko.lisa.editor.TestNodeInfo;
 
 /**
+ * SMTP AUTH PLAIN Controller.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class POP3ClientController extends TestNodeInfo
+public class SMTPAuthPLAINController extends TestNodeInfo
 {
-	static final String STEP_KEY = "lisa.POP3Step.key";
+	static final String STEP_KEY = "lisa.SMTPAuthPlain.key";
 
 	@Override
 	public void initNewOne()
 	{
-		POP3ClientStep node = new POP3ClientStep();
+		SMTPAuthPLAINStep node = new SMTPAuthPLAINStep();
 		putAttribute(STEP_KEY, node);
 	}
 
@@ -37,21 +38,21 @@ public class POP3ClientController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter pw)
 	{
-		POP3ClientStep node = (POP3ClientStep) getAttribute(STEP_KEY);
+		SMTPAuthPLAINStep node = (SMTPAuthPLAINStep) getAttribute(STEP_KEY);
 		node.writeSubXML(pw);
 	}
 
 	@Override
 	public void migrate(Object obj)
 	{
-		POP3ClientStep node = (POP3ClientStep) obj;
+		SMTPAuthPLAINStep node = (SMTPAuthPLAINStep) obj;
 		putAttribute(STEP_KEY, node);
 	}
 
 	@Override
 	public String getEditorName()
 	{
-		return "POP3 Client";
+		return "SMTP AUTH PLAIN";
 	}
 
 	/**
@@ -59,6 +60,7 @@ public class POP3ClientController extends TestNodeInfo
 	@Override
 	public String getHelpString()
 	{
-		return "POP3 Client";
+		return "SMTP AUTH PLAIN";
 	}
+
 }

@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gavaghan.lisa.sdk.email.step.MailListenStep;
+import org.gavaghan.lisa.sdk.email.step.MailRespondStep;
 import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
 import org.gavaghan.lisa.sdk.email.tph.POP3ProtocolHandler;
 

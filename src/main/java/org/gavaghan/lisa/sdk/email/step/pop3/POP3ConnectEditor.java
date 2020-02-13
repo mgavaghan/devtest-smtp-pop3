@@ -1,4 +1,6 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
+
+import org.gavaghan.lisa.sdk.email.step.MailConnectEditor;
 
 /**
  * 

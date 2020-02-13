@@ -1,10 +1,11 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gavaghan.lisa.sdk.email.step.MailListenStep;
 import org.gavaghan.lisa.sdk.email.tph.POP3Request;
 import org.gavaghan.lisa.sdk.email.tph.pop3commands.GREET;
 import org.gavaghan.lisa.sdk.email.tph.pop3commands.QUIT;
@@ -102,7 +103,8 @@ public class POP3ListenStep extends MailListenStep
 	 * @return
 	 * @throws IOException
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	protected Object doNodeLogic(TestExec testExec) throws IOException
 	{
 		LOG.debug("ENTER: doNodeLogic");

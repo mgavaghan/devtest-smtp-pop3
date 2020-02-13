@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.PrintWriter;
 
@@ -11,9 +11,9 @@ import com.itko.lisa.editor.TestNodeInfo;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class POP3RespondController extends TestNodeInfo
+public class POP3ListenController extends TestNodeInfo
 {
-	public static final String STEP_INSTANCE_KEY = POP3RespondStep.class.getName() + ".key";
+	public static final String STEP_INSTANCE_KEY = POP3ListenStep.class.getName() + ".key";
 
 	@Override
 	public Icon getSmallIcon()
@@ -30,13 +30,13 @@ public class POP3RespondController extends TestNodeInfo
 	@Override
 	public String getEditorName()
 	{
-		return "POP3 Respond Editor";
+		return "POP3 Listen Editor";
 	}
 
 	@Override
 	public String getHelpString()
 	{
-		return "POP3 Responder";
+		return "POP3 Listener";
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class POP3RespondController extends TestNodeInfo
 	{
 		if (getAttribute(STEP_INSTANCE_KEY) == null)
 		{
-			POP3RespondStep step = new POP3RespondStep();
+			POP3ListenStep step = new POP3ListenStep();
 
 			setThinkTime(0, 0);
 			setNextNode(this);
@@ -60,11 +60,13 @@ public class POP3RespondController extends TestNodeInfo
 	 * This method is used to attach a created step object to our attribute set.
 	 * 
 	 * @param object
+	 *           the step to attach. It must be an instance of
+	 *           <code>HttpListenStep</code>.
 	 */
 	@Override
 	public void migrate(Object object)
 	{
-		POP3RespondStep step = (POP3RespondStep) object;
+		POP3ListenStep step = (POP3ListenStep) object;
 
 		putAttribute(STEP_INSTANCE_KEY, step);
 	}
@@ -78,6 +80,6 @@ public class POP3RespondController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter out)
 	{
-		((POP3RespondStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
+		((POP3ListenStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
 	}
 }

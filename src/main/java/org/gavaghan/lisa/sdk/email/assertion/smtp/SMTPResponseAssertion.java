@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.assertion;
+package org.gavaghan.lisa.sdk.email.assertion.smtp;
 
 import org.w3c.dom.Element;
 
@@ -10,6 +10,7 @@ import com.itko.util.ParameterList;
 import com.itko.util.XMLUtils;
 
 /**
+ * Validates SMTP response code and text.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
@@ -27,6 +28,12 @@ public class SMTPResponseAssertion extends CheckResult
 
 	/** Response code to assert, or empty string. */
 	private String mResponse;
+	
+	public SMTPResponseAssertion()
+	{
+	   // FIXME make sure this does what we think
+	   setAssertTrue(false);
+	}
 
 	@Override
 	public String getTypeName() throws Exception
@@ -34,12 +41,12 @@ public class SMTPResponseAssertion extends CheckResult
 		return "Check SMTP Response";
 	}
 
-	@Override
+   @Override
 	public ParameterList getCustomParameters()
 	{
 		ParameterList pl = new ParameterList();
 		pl.addParameter(new Parameter("Status: ", STATUS_CODE, mStatus, java.lang.String.class));
-		pl.addParameter(new Parameter("Response: ", RESPONSE_CODE, mResponse, java.lang.String.class));
+		pl.addParameter(new Parameter("Response ID: ", RESPONSE_CODE, mResponse, java.lang.String.class));
 		return pl;
 	}
 
@@ -50,12 +57,12 @@ public class SMTPResponseAssertion extends CheckResult
 		mResponse = XMLUtils.getChildText(XMLUtils.findChildElement(elem, RESPONSE_CODE));
 	}
 
-	@Override
+   @Override
 	protected boolean evaluate(TestExec testExec, Object arg)
 	{
 		if (!(arg instanceof String))
 		{
-			testExec.log("Assert fired", "Argument is not a string");
+         setFailDetail("Response is not a string");
 			return false;
 		}
 
@@ -68,7 +75,7 @@ public class SMTPResponseAssertion extends CheckResult
 		{
 			if (!line.startsWith(status))
 			{
-				testExec.log("Assert fired", "Did not get expected status code: " + line);
+				setFailDetail("Did not get expected status code (" + status + "): " + line);
 				return false;
 			}
 		}
@@ -86,9 +93,14 @@ public class SMTPResponseAssertion extends CheckResult
 				
 				if (!mResponse.equals(code))
 				{
-					testExec.log("Assert fired", "Did not get expected response code: " + line);
+				   setFailDetail("Did not get expected response ID (" + response + "): " + line);
 					return false;
 				}
+			}
+			else
+			{
+            setFailDetail("'[ID=' not found.  Are you sure you're in test mode?");
+            return false;
 			}
 		}
 

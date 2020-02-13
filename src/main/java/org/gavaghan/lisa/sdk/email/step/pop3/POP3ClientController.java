@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.PrintWriter;
 
@@ -11,14 +11,14 @@ import com.itko.lisa.editor.TestNodeInfo;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPClientController extends TestNodeInfo
+public class POP3ClientController extends TestNodeInfo
 {
-	static final String STEP_KEY = "lisa.SMTPStep.key";
+	static final String STEP_KEY = "lisa.POP3Step.key";
 
 	@Override
 	public void initNewOne()
 	{
-		SMTPClientStep node = new SMTPClientStep();
+		POP3ClientStep node = new POP3ClientStep();
 		putAttribute(STEP_KEY, node);
 	}
 
@@ -37,21 +37,21 @@ public class SMTPClientController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter pw)
 	{
-		SMTPClientStep node = (SMTPClientStep) getAttribute(STEP_KEY);
+		POP3ClientStep node = (POP3ClientStep) getAttribute(STEP_KEY);
 		node.writeSubXML(pw);
 	}
 
 	@Override
 	public void migrate(Object obj)
 	{
-		SMTPClientStep node = (SMTPClientStep) obj;
+		POP3ClientStep node = (POP3ClientStep) obj;
 		putAttribute(STEP_KEY, node);
 	}
 
 	@Override
 	public String getEditorName()
 	{
-		return "SMTP Client";
+		return "POP3 Client";
 	}
 
 	/**
@@ -59,6 +59,6 @@ public class SMTPClientController extends TestNodeInfo
 	@Override
 	public String getHelpString()
 	{
-		return "SMTP Client";
+		return "POP3 Client";
 	}
 }

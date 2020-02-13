@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step;
+package org.gavaghan.lisa.sdk.email.step.pop3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,30 +8,31 @@ import java.net.UnknownHostException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.gavaghan.lisa.sdk.email.step.MailConnectStep;
 
 import com.itko.lisa.test.TestExec;
 
 /**
- * Step to establish an SMTP connection.
+ * Step to establish an POP3 connection.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPConnectStep extends MailConnectStep
+public class POP3ConnectStep extends MailConnectStep
 {
 	/** Our logger. */
-	static private Log LOG = LogFactory.getLog(SMTPConnectStep.class);
+	static private Log LOG = LogFactory.getLog(POP3ConnectStep.class);
 
 	/** Key for socket in TestExec. */
-	static private final String SOCKET_KEY = SMTPClientStep.class.getName() + ".SOCKET";
+	static private final String SOCKET_KEY = POP3ClientStep.class.getName() + ".SOCKET";
 
 	/** Key for reader in TestExec. */
-	static final String READER_KEY = SMTPClientStep.class.getName() + ".READER";
+	static final String READER_KEY = POP3ClientStep.class.getName() + ".READER";
 
 	/** Key for writer in TestExec. */
-	static final String WRITER_KEY = SMTPClientStep.class.getName() + ".WRITER";
+	static final String WRITER_KEY = POP3ClientStep.class.getName() + ".WRITER";
 
-	/** Key for SMTP status in TestExec. */
-	static final String STATUS_KEY = "smtp.status";
+	/** Key for POP3 status in TestExec. */
+	static final String STATUS_KEY = "pop3.status";
 
 	/**
 	 * Create the stream.
@@ -43,7 +44,7 @@ public class SMTPConnectStep extends MailConnectStep
 	@Override
 	protected void createStreams(TestExec testExec) throws UnknownHostException, IOException
 	{
-		closeSMTPConnection(testExec);
+		closePOP3Connection(testExec);
 		super.createStreams(testExec);
 	}
 
@@ -75,9 +76,9 @@ public class SMTPConnectStep extends MailConnectStep
 	 * @param testExec
 	 * @throws IOException
 	 */
-	static public void closeSMTPConnection(TestExec testExec)
+	static public void closePOP3Connection(TestExec testExec)
 	{
-		LOG.debug("Closing SMTP connection");
+		LOG.debug("Closing POP3 connection");
 		BufferedReader reader = (BufferedReader) testExec.getStateObject(READER_KEY);
 		BufferedWriter writer = (BufferedWriter) testExec.getStateObject(WRITER_KEY);
 		Socket socket = (Socket) testExec.getStateObject(SOCKET_KEY);
@@ -129,7 +130,7 @@ public class SMTPConnectStep extends MailConnectStep
 	@Override
 	public void destroy(TestExec testExec)
 	{
-		closeSMTPConnection(testExec);
+		closePOP3Connection(testExec);
 
 		super.destroy(testExec);
 	}
@@ -140,7 +141,7 @@ public class SMTPConnectStep extends MailConnectStep
 	@Override
 	public String getTypeName() throws Exception
 	{
-		return "SMTP Connect";
+		return "POP3 Connect";
 	}
 
 	/**
@@ -149,7 +150,7 @@ public class SMTPConnectStep extends MailConnectStep
 	@Override
 	protected Object doNodeLogic(TestExec testExec) throws Exception
 	{
-		// create the SMTP streams
+		// create the POP3 streams
 		createStreams(testExec);
 
 		// get the response
@@ -157,7 +158,7 @@ public class SMTPConnectStep extends MailConnectStep
 		String line = reader.readLine();
 
 		// parse the response
-		if ((line == null) || (line.length() < 4)) throw new IOException("Invalid SMTP greeting received: " + line);
+		if ((line == null) || (line.length() < 3)) throw new IOException("Invalid POP3 greeting received.");
 
 		String status = line.substring(0, 3);
 		String response = line.substring(4).trim();
