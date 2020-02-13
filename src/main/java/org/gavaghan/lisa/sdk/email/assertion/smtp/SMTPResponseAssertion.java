@@ -29,10 +29,6 @@ public class SMTPResponseAssertion extends CheckResult
 	/** Response code to assert, or empty string. */
 	private String mResponse;
 	
-	public SMTPResponseAssertion()
-	{
-	}
-
 	@Override
 	public String getTypeName() throws Exception
 	{
@@ -58,6 +54,8 @@ public class SMTPResponseAssertion extends CheckResult
    @Override
 	protected boolean evaluate(TestExec testExec, Object arg)
 	{
+      setLog("Evaluating SMTP status code and response ID");
+      
 		if (!(arg instanceof String))
 		{
          setFailDetail("Response is not a string");
