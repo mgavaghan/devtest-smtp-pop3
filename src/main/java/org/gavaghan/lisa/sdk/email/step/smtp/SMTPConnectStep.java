@@ -76,7 +76,8 @@ public class SMTPConnectStep extends MailConnectStep
 	 * @param testExec
 	 * @throws IOException
 	 */
-	static public void closeSMTPConnection(TestExec testExec)
+	@SuppressWarnings("resource")
+   static public void closeSMTPConnection(TestExec testExec)
 	{
 		LOG.debug("Closing SMTP connection");
 		BufferedReader reader = (BufferedReader) testExec.getStateObject(READER_KEY);
@@ -147,7 +148,8 @@ public class SMTPConnectStep extends MailConnectStep
 	/**
 	 * Send command and get response.
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	protected Object doNodeLogic(TestExec testExec) throws Exception
 	{
 		// create the SMTP streams

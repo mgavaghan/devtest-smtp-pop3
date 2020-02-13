@@ -11,14 +11,14 @@ import com.itko.lisa.editor.TestNodeInfo;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPClientController extends TestNodeInfo
+public class SMTPDATAController extends TestNodeInfo
 {
-	static final String STEP_KEY = "lisa.SMTPClientStep.key";
+   public static final String STEP_KEY = SMTPDATAController.class.getName() + ".key";
 
 	@Override
 	public void initNewOne()
 	{
-		SMTPClientStep node = new SMTPClientStep();
+		SMTPDATAStep node = new SMTPDATAStep();
 		putAttribute(STEP_KEY, node);
 	}
 
@@ -37,21 +37,21 @@ public class SMTPClientController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter pw)
 	{
-		SMTPClientStep node = (SMTPClientStep) getAttribute(STEP_KEY);
+		SMTPDATAStep node = (SMTPDATAStep) getAttribute(STEP_KEY);
 		node.writeSubXML(pw);
 	}
 
 	@Override
 	public void migrate(Object obj)
 	{
-		SMTPClientStep node = (SMTPClientStep) obj;
+		SMTPDATAStep node = (SMTPDATAStep) obj;
 		putAttribute(STEP_KEY, node);
 	}
 
 	@Override
 	public String getEditorName()
 	{
-		return "SMTP Client";
+		return "SMTP DATA";
 	}
 
 	/**
@@ -59,6 +59,6 @@ public class SMTPClientController extends TestNodeInfo
 	@Override
 	public String getHelpString()
 	{
-		return "SMTP Client";
+		return "SMTP DATA";
 	}
 }

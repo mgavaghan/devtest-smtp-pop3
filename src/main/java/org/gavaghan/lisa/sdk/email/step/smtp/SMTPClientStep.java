@@ -96,7 +96,8 @@ public class SMTPClientStep extends MailClientStep
 	/**
 	 * Send command and get response.
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	protected Object doNodeLogic(TestExec testExec) throws Exception
 	{
 		// get reader and writer

@@ -31,8 +31,6 @@ public class SMTPResponseAssertion extends CheckResult
 	
 	public SMTPResponseAssertion()
 	{
-	   // FIXME make sure this does what we think
-	   setAssertTrue(false);
 	}
 
 	@Override

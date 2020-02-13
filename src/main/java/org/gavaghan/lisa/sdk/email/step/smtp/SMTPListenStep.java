@@ -8,7 +8,6 @@ import java.net.SocketException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.gavaghan.lisa.sdk.email.step.MailListenStep;
-import org.gavaghan.lisa.sdk.email.step.MailListenStep.ConnectionState;
 import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
 import org.gavaghan.lisa.sdk.email.tph.SMTPRequest;
 import org.gavaghan.lisa.sdk.email.tph.smtpcommands.AUTH;
@@ -184,7 +183,8 @@ public class SMTPListenStep extends MailListenStep
 	 * @return
 	 * @throws IOException
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	protected Object doNodeLogic(TestExec testExec) throws IOException
 	{
 		LOG.debug("ENTER: doNodeLogic");
