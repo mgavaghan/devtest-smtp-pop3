@@ -6,11 +6,13 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import com.itko.lisa.editor.CustomEditor;
 
 /**
+ * FIXME use scroll panes
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
@@ -20,18 +22,27 @@ public class SMTPDATAEditor extends CustomEditor
    private boolean mInit = false;
 
    /** Command. */
-   private JTextField mCommand = new JTextField();
+   private JTextArea mHeaders = new JTextArea(10, 10);
+
+   /** Command. */
+   private JTextArea mBody = new JTextArea();
 
    @Override
    public String isEditorValid()
    {
-      if (mCommand.getText().trim().length() == 0) return "Please specify a command";
+      if (mHeaders.getText().trim().length() == 0) return "Please specify the headers";
+      if (mBody.getText().trim().length() == 0) return "Please specify the body";
       return null;
    }
 
-   public JTextField getCommand()
+   public JTextArea getHeaders()
    {
-      return mCommand;
+      return mHeaders;
+   }
+
+   public JTextArea getBody()
+   {
+      return mBody;
    }
    
 	/**
@@ -44,7 +55,8 @@ public class SMTPDATAEditor extends CustomEditor
 		controller.getTestCaseInfo().getTestExec().saveNodeResponse(controller.getName(), controller.getRet());
 		SMTPDATAStep step = (SMTPDATAStep) controller.getAttribute(SMTPDATAController.STEP_KEY);
 
-		step.setCommand(getCommand().getText());
+		step.setHeaders(getHeaders().getText());
+      step.setBody(getBody().getText());
 	}
 
 	/**
@@ -58,7 +70,8 @@ public class SMTPDATAEditor extends CustomEditor
 		SMTPDATAController controller = (SMTPDATAController) getController();
 		SMTPDATAStep step = (SMTPDATAStep) controller.getAttribute(SMTPDATAController.STEP_KEY);
 
-		getCommand().setText(step.getCommand());
+		getHeaders().setText(step.getHeaders());
+      getBody().setText(step.getBody());
 	}
 
    /**
@@ -76,27 +89,50 @@ public class SMTPDATAEditor extends CustomEditor
       JPanel mainPanel = new JPanel(new GridBagLayout());
       setMinimumSize(new Dimension(300,300));
 
-      // add request label
+      // add headers label
+      mHeaders.setMinimumSize(new Dimension(10,30));
       gbc = new GridBagConstraints();
       gbc.gridx = 0;
       gbc.gridy = 0;
       gbc.gridwidth = 1;
-      gbc.weightx = 0;
-      gbc.weighty = 0;
+      gbc.weightx = 1;
+      gbc.weighty = 1;
       gbc.anchor = GridBagConstraints.NORTHWEST;
       gbc.fill = GridBagConstraints.HORIZONTAL;
-      mainPanel.add(new JLabel("Command: "), gbc);
+      mainPanel.add(new JLabel("Headers: "), gbc);
 
-      // add TEXT FIELD to main panel
+      // add TEXT AREA to main panel
       gbc = new GridBagConstraints();
-      gbc.gridx = 1;
-      gbc.gridy = 0;
+      gbc.gridx = 0;
+      gbc.gridy = 1;
       gbc.gridwidth = 1;
       gbc.weightx = 1;
-      gbc.weighty = 0;
+      gbc.weighty = 1;
       gbc.anchor = GridBagConstraints.NORTHWEST;
-      gbc.fill = GridBagConstraints.HORIZONTAL;
-      mainPanel.add(mCommand, gbc);
+      gbc.fill = GridBagConstraints.BOTH;
+      mainPanel.add(mHeaders, gbc);
+
+      // add body label
+      gbc = new GridBagConstraints();
+      gbc.gridx = 0;
+      gbc.gridy = 2;
+      gbc.gridwidth = 1;
+      gbc.weightx = 1;
+      gbc.weighty = 1;
+      gbc.anchor = GridBagConstraints.NORTHWEST;
+      gbc.fill = GridBagConstraints.BOTH;
+      mainPanel.add(new JLabel("Body: "), gbc);
+
+      // add TEXT AREA to main panel
+      gbc = new GridBagConstraints();
+      gbc.gridx = 0;
+      gbc.gridy = 3;
+      gbc.gridwidth = 1;
+      gbc.weightx = 1;
+      gbc.weighty = 1;
+      gbc.anchor = GridBagConstraints.NORTHWEST;
+      gbc.fill = GridBagConstraints.BOTH;
+      mainPanel.add(mBody, gbc);
 
       // add main panel to editor
       this.setLayout(new GridBagLayout());
