@@ -10,7 +10,7 @@ import java.io.Reader;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-class CorrectedBufferedReader extends BufferedReader
+public class CorrectedBufferedReader extends BufferedReader
 {
 	/** Pending character to use, if any. */
 	private Integer mPending = null;
@@ -20,7 +20,7 @@ class CorrectedBufferedReader extends BufferedReader
 	 * 
 	 * @param reader
 	 */
-	CorrectedBufferedReader(Reader reader)
+	public CorrectedBufferedReader(Reader reader)
 	{
 		super(reader);
 	}
