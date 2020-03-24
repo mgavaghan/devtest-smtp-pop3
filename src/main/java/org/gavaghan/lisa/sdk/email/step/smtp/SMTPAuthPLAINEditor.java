@@ -3,14 +3,14 @@ package org.gavaghan.lisa.sdk.email.step.smtp;
 import org.gavaghan.devtest.autostep.AutoEditor;
 
 /**
- * SMTP Client Command Editor.
+ * SMTP AUTH PLAIN Editor.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPClientEditor extends AutoEditor<SMTPClientStep>
+public class SMTPAuthPLAINEditor extends AutoEditor<SMTPAuthPLAINStep>
 {
-   public SMTPClientEditor()
+   public SMTPAuthPLAINEditor()
    {
-      super(SMTPClientStep.class);
+      super(SMTPAuthPLAINStep.class);
    }
 }

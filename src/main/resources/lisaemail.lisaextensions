@@ -59,7 +59,7 @@ org.gavaghan.lisa.sdk.email.step.pop3.POP3RespondStep
 #org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
 
 org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthEditor
+org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINEditor
 org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAEditor
 org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientEditor
 org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenEditor

@@ -1,12 +1,12 @@
 package org.gavaghan.lisa.sdk.email.step.pop3;
 
-import org.gavaghan.lisa.sdk.email.step.MailCientEditor;
+import org.gavaghan.lisa.sdk.email.step.MailClientEditor;
 
 /**
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class POP3ClientEditor extends MailCientEditor
+public class POP3ClientEditor extends MailClientEditor
 {
 	/**
 	 * Save to the step.

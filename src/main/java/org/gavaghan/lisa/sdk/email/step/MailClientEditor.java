@@ -15,7 +15,7 @@ import com.itko.lisa.editor.CustomEditor;
  * 
  * @author mike@gavaghan.org
  */
-public abstract class MailCientEditor extends CustomEditor
+public abstract class MailClientEditor extends CustomEditor
 {
 	/** Initialized flag. */
 	private boolean mInit = false;

@@ -24,6 +24,8 @@ import com.itko.util.XMLUtils;
 /**
  * Base implementation for mail server connections.
  * 
+ * @deprecated
+ * 
  * @author mike@gavaghan.org
  */
 public abstract class MailConnectStep extends BaseStep

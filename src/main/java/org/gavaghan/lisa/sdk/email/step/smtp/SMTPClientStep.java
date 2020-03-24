@@ -6,7 +6,9 @@ import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.gavaghan.lisa.sdk.email.step.MailClientStep;
+import org.gavaghan.devtest.autostep.AutoStep;
+import org.gavaghan.devtest.autostep.Property;
+import org.gavaghan.devtest.autostep.TypeName;
 import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
 
 import com.itko.lisa.test.TestExec;
@@ -17,7 +19,9 @@ import com.itko.lisa.test.TestRunException;
  *  
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPClientStep extends MailClientStep
+@TypeName("SMTP Client Command")
+@Property(name = "Command", mandatory = true)
+public class SMTPClientStep extends AutoStep 
 {
 	/** Our logger. */
 	static private Log LOG = LogFactory.getLog(SMTPClientStep.class);
@@ -30,7 +34,7 @@ public class SMTPClientStep extends MailClientStep
 	 * @return
 	 * @throws IOException
 	 */
-	private String getSMTPResponse(TestExec testExec, BufferedReader reader) throws IOException
+	static private String getSMTPResponse(TestExec testExec, BufferedReader reader) throws IOException
 	{
 		LOG.debug("Reading SMTP response");
 		testExec.removeState("smtp.status");
@@ -71,15 +75,6 @@ public class SMTPClientStep extends MailClientStep
 	}
 
 	/**
-	 * Get the type name.
-	 */
-	@Override
-	public String getTypeName() throws Exception
-	{
-		return "SMTP Client";
-	}
-
-	/**
 	 * Get the command string.
 	 * 
 	 * @param testExec
@@ -88,27 +83,28 @@ public class SMTPClientStep extends MailClientStep
 	 */
 	protected String getCommand(TestExec testExec) throws TestRunException
 	{
-		String command = testExec.parseInState(getCommand()).trim();
+		String command = getParsedProperty(testExec, "Command");
 		if (command.length() < 4) throw new TestRunException("command is too short: " + command, null);
 		return command;
 	}
 
+   @Override
+   protected Object doNodeLogic(TestExec testExec) throws Exception
+   {
+      return doRequestResponse(testExec, getCommand(testExec));
+   }
+   
 	/**
 	 * Send command and get response.
 	 */
 	@SuppressWarnings("resource")
-   @Override
-	protected Object doNodeLogic(TestExec testExec) throws Exception
+	static protected Object doRequestResponse(TestExec testExec, String command) throws Exception
 	{
 		// get reader and writer
 		BufferedReader reader = (BufferedReader) testExec.getStateObject(SMTPConnectStep.READER_KEY);
 		BufferedWriter writer = (BufferedWriter) testExec.getStateObject(SMTPConnectStep.WRITER_KEY);
 
 		if ((reader == null) || (writer == null)) throw new TestRunException("Not connected to an SMTP server.", null);
-
-		// expand the command
-		LOG.debug("About to execute SMTP command.");
-		String command = getCommand(testExec);
 
 		// send the command
 		if (LOG.isDebugEnabled()) LOG.debug("Sending: " + command);
