@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step.smtp;
+package org.gavaghan.lisa.sdk.email.step.smtp.vse;
 
 import org.gavaghan.lisa.sdk.email.step.MailListenEditor;
 

@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step.smtp;
+package org.gavaghan.lisa.sdk.email.step.smtp.vse;
 
 import java.io.PrintWriter;
 
@@ -11,9 +11,9 @@ import com.itko.lisa.editor.TestNodeInfo;
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPRespondController extends TestNodeInfo
+public class SMTPListenController extends TestNodeInfo
 {
-	public static final String STEP_INSTANCE_KEY = SMTPRespondStep.class.getName() + ".key";
+	public static final String STEP_INSTANCE_KEY = SMTPListenStep.class.getName() + ".key";
 
 	@Override
 	public Icon getSmallIcon()
@@ -30,13 +30,13 @@ public class SMTPRespondController extends TestNodeInfo
 	@Override
 	public String getEditorName()
 	{
-		return "SMTP Respond Editor";
+		return "SMTP Listen Editor";
 	}
 
 	@Override
 	public String getHelpString()
 	{
-		return "SMTP Responder";
+		return "SMTP Listener";
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class SMTPRespondController extends TestNodeInfo
 	{
 		if (getAttribute(STEP_INSTANCE_KEY) == null)
 		{
-			SMTPRespondStep step = new SMTPRespondStep();
+			SMTPListenStep step = new SMTPListenStep();
 
 			setThinkTime(0, 0);
 			setNextNode(this);
@@ -60,11 +60,13 @@ public class SMTPRespondController extends TestNodeInfo
 	 * This method is used to attach a created step object to our attribute set.
 	 * 
 	 * @param object
+	 *           the step to attach. It must be an instance of
+	 *           <code>HttpListenStep</code>.
 	 */
 	@Override
 	public void migrate(Object object)
 	{
-		SMTPRespondStep step = (SMTPRespondStep) object;
+		SMTPListenStep step = (SMTPListenStep) object;
 
 		putAttribute(STEP_INSTANCE_KEY, step);
 	}
@@ -78,6 +80,6 @@ public class SMTPRespondController extends TestNodeInfo
 	@Override
 	public void writeSubXML(PrintWriter out)
 	{
-		((SMTPRespondStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
+		((SMTPListenStep) getAttribute(STEP_INSTANCE_KEY)).writeSubXML(out);
 	}
 }

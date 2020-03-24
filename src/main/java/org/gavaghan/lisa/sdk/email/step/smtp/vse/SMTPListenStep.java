@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step.smtp;
+package org.gavaghan.lisa.sdk.email.step.smtp.vse;
 
 import java.io.BufferedReader;
 import java.io.IOException;

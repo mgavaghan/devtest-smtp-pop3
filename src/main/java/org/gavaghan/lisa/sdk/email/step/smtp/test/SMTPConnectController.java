@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step.smtp;
+package org.gavaghan.lisa.sdk.email.step.smtp.test;
 
 import org.gavaghan.devtest.autostep.AutoController;
 import org.gavaghan.devtest.autostep.EditorName;

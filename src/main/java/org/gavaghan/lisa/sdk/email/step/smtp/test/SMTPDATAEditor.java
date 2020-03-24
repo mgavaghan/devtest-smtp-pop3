@@ -1,4 +1,4 @@
-package org.gavaghan.lisa.sdk.email.step.smtp;
+package org.gavaghan.lisa.sdk.email.step.smtp.test;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

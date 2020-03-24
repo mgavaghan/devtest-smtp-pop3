@@ -4,16 +4,16 @@ nodeCategories=SMTP\ Test,SMTP\ Virtualize,POP3\ Test,POP3\ Virtualize
 # SMTP Nodes
 ###############################################################################
 SMTP\ Test=\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectStep, \
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientStep
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectStep, \
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientStep
 
 #org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
 
 SMTP\ Virtualize=\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenStep, \
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondStep
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenStep, \
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPRespondStep
 
 ###############################################################################
 # POP3 Nodes
@@ -45,12 +45,12 @@ org.gavaghan.lisa.sdk.email.tph.pop3.POP3ProtocolHandler=hybrid, POP3, POP3 Tran
 # Custom steps
 #################################################
 nodes=\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenStep,\
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPRespondStep,\
 \
 org.gavaghan.lisa.sdk.email.step.pop3.POP3ConnectStep,\
 org.gavaghan.lisa.sdk.email.step.pop3.POP3ClientStep,\
@@ -58,12 +58,12 @@ org.gavaghan.lisa.sdk.email.step.pop3.POP3ListenStep,\
 org.gavaghan.lisa.sdk.email.step.pop3.POP3RespondStep
 #org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
 
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPConnectEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPAuthPLAINEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPDATAEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPClientEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPListenEditor
-org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondStep=org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondController,org.gavaghan.lisa.sdk.email.step.smtp.SMTPRespondEditor
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectStep=org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectController,org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectEditor
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINStep=org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINController,org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINEditor
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAStep=org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAController,org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAEditor
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientStep=org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientController,org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientEditor
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenStep=org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenController,org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenEditor
+org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPRespondStep=org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPRespondController,org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPRespondEditor
 
 org.gavaghan.lisa.sdk.email.step.pop3.POP3ConnectStep=org.gavaghan.lisa.sdk.email.step.pop3.POP3ConnectController,org.gavaghan.lisa.sdk.email.step.pop3.POP3ConnectEditor
 org.gavaghan.lisa.sdk.email.step.pop3.POP3ClientStep=org.gavaghan.lisa.sdk.email.step.pop3.POP3ClientController,org.gavaghan.lisa.sdk.email.step.pop3.POP3ClientEditor
