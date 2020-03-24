@@ -13,6 +13,8 @@ import com.itko.util.CloneImplemented;
  * Base of all customer steps.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
+ * 
+ * @deprecated
  */
 public abstract class BaseStep extends TestNode implements CloneImplemented
 {

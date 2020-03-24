@@ -26,8 +26,8 @@ import com.itko.lisa.test.TestExec;
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
 @TypeName("SMTP Connect")
-@Property(name = "Server Address", mandatory = true)
-@Property(name = "Is SSL", type = boolean.class)
+@Property(index = 0, name = "Server Address", mandatory = true)
+@Property(index = 1, name = "Is SSL", type = boolean.class)
 public class SMTPConnectStep extends AutoStep
 {
    /** Our logger. */
