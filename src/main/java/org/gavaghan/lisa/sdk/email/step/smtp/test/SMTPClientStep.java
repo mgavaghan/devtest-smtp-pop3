@@ -98,7 +98,7 @@ public class SMTPClientStep extends AutoStep
 	 * Send command and get response.
 	 */
 	@SuppressWarnings("resource")
-	static protected Object doRequestResponse(TestExec testExec, String command) throws Exception
+	static protected String doRequestResponse(TestExec testExec, String command) throws Exception
 	{
 		// get reader and writer
 		BufferedReader reader = (BufferedReader) testExec.getStateObject(SMTPConnectStep.READER_KEY);

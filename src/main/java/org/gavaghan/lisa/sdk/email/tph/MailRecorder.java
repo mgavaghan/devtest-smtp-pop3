@@ -112,7 +112,8 @@ public abstract class MailRecorder implements Runnable
 	/**
 	 * Thread work loop.
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	public void run()
 	{
 		LOG.info("Begin recording");

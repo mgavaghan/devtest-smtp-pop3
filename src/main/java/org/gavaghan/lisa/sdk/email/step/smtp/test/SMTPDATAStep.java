@@ -1,14 +1,20 @@
 package org.gavaghan.lisa.sdk.email.step.smtp.test;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+
 import org.gavaghan.devtest.autostep.AutoStep;
 import org.gavaghan.devtest.autostep.Property;
 import org.gavaghan.devtest.autostep.TypeName;
+import org.gavaghan.lisa.sdk.email.tph.EmailConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itko.lisa.test.TestExec;
+import com.itko.lisa.test.TestRunException;
 
 /**
+ * SMTP DATA Step.
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
@@ -20,10 +26,65 @@ public class SMTPDATAStep extends AutoStep
    /** Our logger. */
    static private Logger LOG = LoggerFactory.getLogger(SMTPDATAStep.class);
 
+   /**
+    * On SMTPException, set the last response to the message of an
+    * <code>SMTPException</code>.
+    * 
+    * @param exc
+    */
+   @Override
+   protected void onException(Exception exc)
+   {
+      if (exc instanceof SMTPException)
+      {
+         setLastResponse("Data command failed with response: " + exc.getMessage());
+      }
+      else
+      {
+         super.onException(exc);
+      }
+   }
+
+   /**
+    * DATA command implementation.
+    * 
+    * @param testExec
+    * @return
+    * @throws Exception
+    */
+   @SuppressWarnings("resource")
    @Override
    protected Object doNodeLogic(TestExec testExec) throws Exception
    {
-      // TODO Auto-generated method stub
-      return null;
-   }   
+      String dataResp = SMTPClientStep.doRequestResponse(testExec, "DATA");
+
+      // if response code doesn't start with '3', something went wrong.
+      if (!dataResp.startsWith("3")) throw new SMTPException(dataResp);
+
+      // get email content
+      String header = testExec.parseInState(getProperty("Headers").toString()).trim();
+      String body = testExec.parseInState(getProperty("Body").toString());
+
+      StringBuilder payload = new StringBuilder(header.length() + body.length() + 10);
+
+      // FIXME accommodate https://cr.yp.to/smtp/message.html
+
+      payload.append(header);
+      payload.append(EmailConstants.CRLF);
+      payload.append(EmailConstants.CRLF);
+      payload.append(body);
+      
+      // if body does not end with CRLF, add it
+      if (!body.endsWith(EmailConstants.CRLF))
+      {
+         payload.append(EmailConstants.CRLF);
+      }
+
+      payload.append('.');
+      payload.append(EmailConstants.CRLF);
+      
+      // send data
+      // FIXME handle foreign characters outside of LATIN1
+      return SMTPClientStep.doRequestResponse(testExec, payload.toString());
+   }
 }
