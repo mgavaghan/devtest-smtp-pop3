@@ -7,9 +7,8 @@ SMTP\ Test=\
 org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPConnectStep, \
 org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPAuthPLAINStep,\
 org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDATAStep,\
-org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientStep
-
-#org.gavaghan.lisa.sdk.email.step.MailClientIteratorStep
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPClientStep, \
+org.gavaghan.lisa.sdk.email.step.smtp.test.SMTPDataStep
 
 SMTP\ Virtualize=\
 org.gavaghan.lisa.sdk.email.step.smtp.vse.SMTPListenStep, \

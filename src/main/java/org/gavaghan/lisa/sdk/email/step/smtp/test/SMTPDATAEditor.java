@@ -1,82 +1,20 @@
 package org.gavaghan.lisa.sdk.email.step.smtp.test;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-
-import com.itko.lisa.editor.CustomEditor;
+import org.gavaghan.devtest.autostep.AutoEditor;
 
 /**
  * FIXME use scroll panes
  * 
  * @author <a href="mailto:mike@gavaghan.org">Mike Gavaghan</a>
  */
-public class SMTPDATAEditor extends CustomEditor
+public class SMTPDATAEditor extends AutoEditor<SMTPDATAStep>
 {
-   /** Initialized flag. */
-   private boolean mInit = false;
-
-   /** Command. */
-   private JTextArea mHeaders = new JTextArea(10, 10);
-
-   /** Command. */
-   private JTextArea mBody = new JTextArea();
-
-   @Override
-   public String isEditorValid()
+   public SMTPDATAEditor()
    {
-      if (mHeaders.getText().trim().length() == 0) return "Please specify the headers";
-      if (mBody.getText().trim().length() == 0) return "Please specify the body";
-      return null;
+      super(SMTPDATAStep.class);
    }
-
-   public JTextArea getHeaders()
-   {
-      return mHeaders;
-   }
-
-   public JTextArea getBody()
-   {
-      return mBody;
-   }
-   
-	/**
-	 * Save to the step.
-	 */
-	@Override
-	public void save()
-	{
-		SMTPDATAController controller = (SMTPDATAController) getController();
-		controller.getTestCaseInfo().getTestExec().saveNodeResponse(controller.getName(), controller.getRet());
-		SMTPDATAStep step = (SMTPDATAStep) controller.getAttribute(SMTPDATAController.STEP_KEY);
-
-		step.setHeaders(getHeaders().getText());
-      step.setBody(getBody().getText());
-	}
-
-	/**
-	 * Render the GUI.
-	 */
-	@Override
-	public void display()
-	{
-		setupEditor();
-
-		SMTPDATAController controller = (SMTPDATAController) getController();
-		SMTPDATAStep step = (SMTPDATAStep) controller.getAttribute(SMTPDATAController.STEP_KEY);
-
-		getHeaders().setText(step.getHeaders());
-      getBody().setText(step.getBody());
-	}
 
    /**
-    * 
-    */
    protected void setupEditor()
    {
       if (mInit)  return;
@@ -145,4 +83,5 @@ public class SMTPDATAEditor extends CustomEditor
       gbc.fill = GridBagConstraints.HORIZONTAL;
       add(mainPanel, gbc);
    }
+   */
 }
