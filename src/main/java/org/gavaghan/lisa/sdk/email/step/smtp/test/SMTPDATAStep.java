@@ -23,7 +23,7 @@ public class SMTPDATAStep extends AutoStep
    static private Logger LOG = LoggerFactory.getLogger(SMTPDATAStep.class);
 
    /**
-    * On SMTPException, set the last response to the message of an
+    * On <code>SMTPException</code>, set the last response to the message of an
     * <code>SMTPException</code>.
     * 
     * @param exc
@@ -62,8 +62,6 @@ public class SMTPDATAStep extends AutoStep
       String body = testExec.parseInState(getProperty("Body").toString());
 
       StringBuilder payload = new StringBuilder(header.length() + body.length() + 10);
-
-      // FIXME accommodate https://cr.yp.to/smtp/message.html
 
       payload.append(header);
       payload.append(EmailConstants.CRLF);
