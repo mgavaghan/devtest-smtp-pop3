@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 public interface EmailConstants
 {
 	/** SMTP and POP3 character encoding. */
-	static public final Charset MAIL_ENCODING = Charset.forName("ISO-8859-1");
+	static public final Charset MAIL_ENCODING = Charset.forName("UTF-8");
 
 	/** Carriage return and line feed combination. */
 	static public final String CRLF = "\r\n";

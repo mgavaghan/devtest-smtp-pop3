@@ -52,7 +52,8 @@ public class POP3Recorder extends MailRecorder
 	 * @param server
 	 * @throws IOException
 	 */
-	@Override
+	@SuppressWarnings("resource")
+   @Override
 	protected void manageConversation(String session, Socket client, Socket server) throws IOException
 	{
 		// turn all four streams into readers and writers

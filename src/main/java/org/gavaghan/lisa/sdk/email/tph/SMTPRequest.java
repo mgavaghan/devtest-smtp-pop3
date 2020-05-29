@@ -108,7 +108,7 @@ public class SMTPRequest
 		return request;
 	}
 
-	/** SMTP commands. */
+	/** SMTP command. */
 	private String mCommand;
 
 	/** Generic argument string. */
