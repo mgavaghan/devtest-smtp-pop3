@@ -1,8 +1,5 @@
 package org.gavaghan.lisa.sdk.email.step.smtp.test;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-
 import org.gavaghan.devtest.autostep.AutoStep;
 import org.gavaghan.devtest.autostep.Property;
 import org.gavaghan.devtest.autostep.TypeName;
@@ -11,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.itko.lisa.test.TestExec;
-import com.itko.lisa.test.TestRunException;
 
 /**
  * SMTP DATA Step.
@@ -52,10 +48,10 @@ public class SMTPDATAStep extends AutoStep
     * @return
     * @throws Exception
     */
-   @SuppressWarnings("resource")
    @Override
    protected Object doNodeLogic(TestExec testExec) throws Exception
    {
+      LOG.debug("About to send DATA command");
       String dataResp = SMTPClientStep.doRequestResponse(testExec, "DATA");
 
       // if response code doesn't start with '3', something went wrong.
@@ -73,7 +69,7 @@ public class SMTPDATAStep extends AutoStep
       payload.append(EmailConstants.CRLF);
       payload.append(EmailConstants.CRLF);
       payload.append(body);
-      
+
       // if body does not end with CRLF, add it
       if (!body.endsWith(EmailConstants.CRLF))
       {
@@ -81,8 +77,7 @@ public class SMTPDATAStep extends AutoStep
       }
 
       payload.append('.');
-      payload.append(EmailConstants.CRLF);
-      
+
       // send data
       // FIXME handle foreign characters outside of LATIN1
       return SMTPClientStep.doRequestResponse(testExec, payload.toString());
