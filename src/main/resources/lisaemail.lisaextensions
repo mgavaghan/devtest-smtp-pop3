@@ -33,6 +33,12 @@ asserts=org.gavaghan.lisa.sdk.email.assertion.smtp.SMTPResponseAssertion
 org.gavaghan.lisa.sdk.email.assertion.smtp.SMTPResponseAssertion=com.itko.lisa.editor.DefaultAssertController,com.itko.lisa.editor.DefaultAssertEditor
 
 ###############################################################################
+# Filters
+###############################################################################
+filters=org.gavaghan.lisa.sdk.email.filter.smtp.ExtractResponsePayload
+org.gavaghan.lisa.sdk.email.filter.smtp.ExtractResponsePayload=com.itko.lisa.editor.FilterController,com.itko.lisa.editor.DefaultFilterEditor
+
+###############################################################################
 # Protocol Handlers
 ###############################################################################
 vseProtocols=org.gavaghan.lisa.sdk.email.tph.SMTPProtocolHandler,\
