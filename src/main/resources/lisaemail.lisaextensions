@@ -35,11 +35,11 @@ org.gavaghan.lisa.sdk.email.assertion.smtp.SMTPResponseAssertion=com.itko.lisa.e
 ###############################################################################
 # Protocol Handlers
 ###############################################################################
-vseProtocols=org.gavaghan.lisa.sdk.email.tph.smtp.SMTPProtocolHandler,\
-org.gavaghan.lisa.sdk.email.tph.pop3.POP3ProtocolHandler
+vseProtocols=org.gavaghan.lisa.sdk.email.tph.SMTPProtocolHandler,\
+org.gavaghan.lisa.sdk.email.tph.POP3ProtocolHandler
 
-org.gavaghan.lisa.sdk.email.tph.smtp.SMTPProtocolHandler=hybrid, SMTP, SMTP Transport Protocol Handler
-org.gavaghan.lisa.sdk.email.tph.pop3.POP3ProtocolHandler=hybrid, POP3, POP3 Transport Protocol Handler
+org.gavaghan.lisa.sdk.email.tph.SMTPProtocolHandler=hybrid, SMTP, SMTP Transport Protocol Handler
+org.gavaghan.lisa.sdk.email.tph.POP3ProtocolHandler=hybrid, POP3, POP3 Transport Protocol Handler
 
 #################################################
 # Custom steps
