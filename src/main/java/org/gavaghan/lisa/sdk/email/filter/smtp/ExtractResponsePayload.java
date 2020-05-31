@@ -27,10 +27,10 @@ public class ExtractResponsePayload extends FilterBaseImpl
    static private final String SAVE_TO_PROPERTY = "smtpPayload";
 
    /** The response to parse. */
-   static private String mSMTPResponse;
+   private String mSMTPResponse;
 
    /** Property to store the response to. */
-   static private String mSaveToProperty;
+   private String mSaveToProperty;
 
    /**
     * Create a new <code>ExtractResponsePayload</code> filter.
@@ -38,7 +38,7 @@ public class ExtractResponsePayload extends FilterBaseImpl
    public ExtractResponsePayload()
    {
       markFilterAsGlobal(false);
-      setThreadSafe(true);
+      setThreadSafe(false);
    }
 
    /*
