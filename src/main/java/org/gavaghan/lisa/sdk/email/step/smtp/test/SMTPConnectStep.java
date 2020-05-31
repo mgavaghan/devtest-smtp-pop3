@@ -34,13 +34,13 @@ public class SMTPConnectStep extends AutoStep
    static private Log LOG = LogFactory.getLog(SMTPConnectStep.class);
 
    /** Key for socket in TestExec. */
-   static final String SOCKET_KEY = SMTPClientStep.class.getName() + ".SOCKET";
+   static final String SOCKET_KEY = "SMTPConnectStep.SOCKET";
 
    /** Key for reader in TestExec. */
-   static final String READER_KEY = SMTPClientStep.class.getName() + ".READER";
+   static final String READER_KEY = "SMTPConnectStep.READER";
 
    /** Key for writer in TestExec. */
-   static final String WRITER_KEY = SMTPClientStep.class.getName() + ".WRITER";
+   static final String WRITER_KEY = "SMTPConnectStep.WRITER";
 
    /** Key for SMTP status in TestExec. */
    static final String STATUS_KEY = "smtp.status";
@@ -77,19 +77,16 @@ public class SMTPConnectStep extends AutoStep
       }
 
       // get read timeout
-      int timeout = 5000;
-      String timeoutStr = (String) testExec.getStateValue("smtp.read.timeout");
+      int timeout;
+      String timeoutStr = testExec.parseInState(testExec.getStateString("smtp.read.timeout", "5000"));
 
-      if (timeoutStr != null)
+      try
       {
-         try
-         {
-            timeout = Integer.parseInt(timeoutStr);
-         }
-         catch (NumberFormatException exc)
-         {
-            LOG.error("Failed to parse 'smtp.read.tiemout' value of '" + timeoutStr + "'.  Using default of " + timeout);
-         }
+         timeout = Integer.parseInt(timeoutStr);
+      }
+      catch (NumberFormatException exc)
+      {
+         throw new RuntimeException("Failed to parse 'smtp.read.tiemout' value of '" + timeoutStr + "'");
       }
 
       socket.setSoTimeout(timeout);
@@ -184,23 +181,15 @@ public class SMTPConnectStep extends AutoStep
    }
 
    /**
-    * Close all connections on destroy.
-    */
-   @Override
-   public void destroy(TestExec testExec)
-   {
-      closeSMTPConnection(testExec);
-
-      super.destroy(testExec);
-   }
-
-   /**
     * Send command and get response.
     */
    @SuppressWarnings("resource")
    @Override
    protected Object doNodeLogic(TestExec testExec) throws Exception
    {
+      // ensure previous state was closed
+      closeSMTPConnection(testExec);
+      
       // create the SMTP streams
       createStreams(testExec);
 

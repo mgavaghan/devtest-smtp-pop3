@@ -22,6 +22,9 @@ import com.itko.lisa.test.TestRunException;
 @Property(name = "Password", mandatory = false, sensitive = true)
 public class SMTPAuthPLAINStep extends AutoStep
 {
+   /** Username character set. */
+   static public final Charset USERNAME_ENC = Charset.forName("ISO-8859-1");
+
 	/** Password character set. */
 	static public final Charset PASSWORD_ENC = Charset.forName("UTF-8");
 
@@ -43,7 +46,7 @@ public class SMTPAuthPLAINStep extends AutoStep
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream())
 		{
 			baos.write(0);
-			baos.write(getParsedProperty(testExec, "Username").getBytes(PASSWORD_ENC));
+			baos.write(getParsedProperty(testExec, "Username").getBytes(USERNAME_ENC));
 			baos.write(0);
 			baos.write(getParsedProperty(testExec, "Password").getBytes(PASSWORD_ENC));
 
